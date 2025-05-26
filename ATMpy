@@ -1,0 +1,85 @@
+# # Ingresar una cifra X y vamos a calcular cuántos
+# billetes de 50, 20, 10 y 5 tenemos que devolver al usuario
+dinero_disponible = [10, 8, 10, 30]
+        # 50k  20k   10k    5k
+
+def mostrarDisponible(montos):
+    print(f'Disponible')
+    print(f'50k: {montos[0]}')
+    print(f'20k: {montos[1]}')
+    print(f'10k: {montos[2]}')
+    print(f'5k: {montos[3]}')
+
+def validarMonto():
+    cantidad=-1
+    while True:
+        cantidad= int(input('Ingrese la cantidad de $ a retirar'))
+        if  cantidad % 5_000 != 0:
+            print('Ingrese un monto valido' \
+            'este ATM solo ' \
+            'admite valores multiplos de 5.{denominacion} COP' \
+            'Oprima ENTER para continuar')
+        else:
+            return cantidad
+        
+def validarDenominacionMenor(denominacion):
+    can = len(denominacion)
+    temp=0
+    for item in range(cantidad):
+        if denominacion[item] > 0:
+            if item == 0:
+                temp = 50_000
+            elif temp ==1:
+                temp = 20_000
+            elif temp == 2:
+                temp = 10_000
+            elif temp == 3:
+                temp = 5_000
+            else:
+                minima=5_000
+    return minima
+
+denominacion= validarDenominacionMenor(denominacion=dinero_disponible)
+
+print('Bienvenido al cajero automático')
+mostrarDisponible(montos=dinero_disponible)
+cantidad = validarMonto()
+
+can_50 = 0
+can_20 = 0
+can_10 = 0
+can_5 = 0
+
+while cantidad > 0:
+    if cantidad >= 50_000 and dinero_disponible[0] > 0:    
+        can_50 += 1
+        cantidad -= 50_000
+        dinero_disponible[0] -= 1
+
+    elif cantidad >= 20_000 and dinero_disponible[1] > 0:
+        can_20 += 1
+        cantidad -= 20_000
+        dinero_disponible[1] -= 1
+
+    elif cantidad >= 10_000 and dinero_disponible[2] > 0:
+        can_10 += 1
+        cantidad -= 10_000
+        dinero_disponible[2] -= 1        
+
+    elif cantidad >= 5_000 and dinero_disponible[3] > 0:
+        can_5 += 1
+        cantidad -= 5_000
+        dinero_disponible[3] -= 1
+
+    else:
+        print('No tenemos fondos suficientes o billetes disponibles para completar la operación.')
+        break
+
+print(f'Se da entrega del dinero de la siguiente forma:') 
+print(f'50k: {can_50}') 
+print(f'20k: {can_20}')
+print(f'10k: {can_10}')
+print(f'5k: {can_5}')
+
+if cantidad > 0:
+    print(f'No se pudo entregar la cantidad restante de: {cantidad}')
